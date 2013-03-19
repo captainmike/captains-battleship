@@ -1,0 +1,13 @@
+<table class='battlefield strikes'>
+  <tbody>
+  <% @game.height.times do |height| %>
+    <tr>
+      <% @game.width.times do |width| %>
+        <%= content_tag :td, 'data-x' => width, 'data-y' => height do %>
+          <%=raw radar_block(@player.previous_strikes[height * @game.width + width]) %>
+        <% end %>
+      <% end %>
+    </tr>
+  <% end %>
+  </tbody>
+</table>

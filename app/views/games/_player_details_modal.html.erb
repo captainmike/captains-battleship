@@ -1,0 +1,15 @@
+<div id="<%= id %>" class="reveal-modal">
+  <h3>Player Detail</h3>
+
+  <%= form_for Players::HumanPlayer.new, url: url, as: 'player' do |f| %>
+    <%= f.label :name %>
+    <%= f.text_field :name, required: true %>
+
+    <%= f.label :email %>
+    <%= f.text_field :email, type: 'email', required: true %>
+
+    <%= f.submit 'Submit', :class => 'button' %>
+  <% end %>
+
+  <a class="close-reveal-modal">&#215;</a>
+</div>

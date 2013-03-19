@@ -1,0 +1,47 @@
+<h2 class='subheader text-center'>
+  <%= @player.game.player1.name %> VS <%= @player.game.player2.name %>
+</h2>
+
+<div class='row'>
+  <div class='large-9 columns'>
+    <h3 class='subheader'><%= @player.name %>'s Radar</h3>
+
+    <%= form_tag strike_game_url(@player.game, @player) do %>
+      <%= hidden_field_tag 'coordinate[x]' %>
+      <%= hidden_field_tag 'coordinate[y]' %>
+      <div data-refresh-strikes='true'>
+        <%= render 'games/battlefield/strikes' %>
+      </div>
+    <% end %>
+
+    <h3 class='subheader'><%= @player.name %>'s Battlefield</h3>
+    <div data-refresh-battlefield='true'>
+      <%= render 'games/battlefield/battlefield' %>
+    </div>
+  </div>
+
+  <div class='large-3 columns'>
+    <h3 class='subheader'>Next turn</h3>
+    <span data-refresh-turn='true'>
+      <% if @game.winner.present? %>
+        WINNER: <%= @game.winner.name %>
+      <% elsif @game.next_turn.present? %>
+        <%= @game.next_turn.name %>
+      <% end %>
+    </span>
+  </div>
+</div>
+
+<script>
+  $(document).ready(function() {
+    var polling = function() {
+      $.getScript('<%= show_game_url(@player.game, @player, format: 'js') %>', function(data) {
+        setTimeout(function(){
+          polling();
+        }, 3000);
+      });
+    };
+
+    polling();
+  });
+</script>

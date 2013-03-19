@@ -1,0 +1,14 @@
+<table class='battlefield configuration'>
+  <tbody>
+  <% @game.height.times do |height| %>
+    <tr>
+      <% @game.width.times do |width| %>
+        <%= content_tag :td, 'data-x' => width, 'data-y' => height do %>
+          <%=raw battlefield_block(@player.battlefield[height * @game.width + width],
+                                   @player.battlefield_casualties[height * @game.width + width]) %>
+        <% end %>
+      <% end %>
+    </tr>
+  <% end %>
+  </tbody>
+</table>

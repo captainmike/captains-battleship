@@ -1,0 +1,15 @@
+.battlefield td { text-align: center; }
+
+.battlefield.strikes {
+  td { height: 38px; width: 38px; }
+  td.hover { background-color: #999; cursor: pointer; }
+}
+
+.battlefield.configuration {
+  td { height: 55px; width: 55px; }
+}
+
+.reveal-modal {
+  form { margin-bottom: 0; }
+}
+

@@ -1,0 +1,11 @@
+<% battlefield = render('games/battlefield/battlefield') %>
+$('[data-refresh-battlefield=true]').html(<%=raw battlefield.to_json %>);
+
+<% strikes = render('games/battlefield/strikes') %>
+$('[data-refresh-strikes=true]').html(<%=raw strikes.to_json %>);
+
+<% if @game.winner.present? %>
+  $('[data-refresh-turn=true]').text('WINNER: ' + <%=raw @game.winner.name.to_json %>);
+<% elsif @game.next_turn.present? %>
+  $('[data-refresh-turn=true]').text(<%=raw @game.next_turn.name.to_json %>);
+<% end %>

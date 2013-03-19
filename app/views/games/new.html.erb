@@ -1,0 +1,16 @@
+<div class='row'>
+  <h2 class='subheader text-center'>Game Mode</h2>
+
+  <div class='small-6 columns small-offset-3'>
+    <a class="button large round" data-reveal-id="player-vs-ai-modal" style='width:100%;' href="#">Player VS AI Player</a>
+
+    <a class="button large round" data-reveal-id="p45-vs-player-modal" style='width:100%;' href="#">Platform 45 VS Player</a>
+
+    <%= form_tag create_p45_vs_ai_games_url do %>
+      <%= submit_tag 'Platform 45 vs AI Player', :class => 'button round expand', style: 'font-size:1.25em' %>
+    <% end %>
+  </div>
+</div>
+
+<%= render 'player_details_modal', id: 'player-vs-ai-modal', url: create_player_vs_ai_games_url %>
+<%= render 'player_details_modal', id: 'p45-vs-player-modal', url: create_p45_vs_player_games_url %>
